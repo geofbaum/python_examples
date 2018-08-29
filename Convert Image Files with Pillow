@@ -1,6 +1,10 @@
 from PIL import Image
 import os
 
+#
+# For one file
+#
+
 infile = 'C:\\Path\\Image\\file.tiff'
 
 f, e = os.path.splitext(infile)
@@ -10,3 +14,22 @@ if infile != outfile:
         Image.open(infile).save(outfile)
     except IOError:
 	print("cannot convert", infile)
+
+
+#
+# For converting multiple files within the same folder of the same type
+#
+
+directory = os.path.join("c:\\","Path\\To\\Your\\Folder\\of\\Images")
+
+for root,dirs,files in os.walk(directory):
+    for file in files:
+        if file.endswith(".tiff"):
+	    f,e os.path.splittext(file)
+	    outfile = f + ".eps"
+	    if file != outfile:
+	        try:
+		    Image.open(file).save(outfile)
+		except IOError:
+		    print("cannot conver", file)
+	
