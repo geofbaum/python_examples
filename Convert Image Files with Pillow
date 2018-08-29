@@ -7,6 +7,6 @@ f, e = os.path.splitext(infile)
 outfile = f + ".eps"
 if infile != outfile:
     try:
-		Image.open(infile).save(outfile)
-	except IOError:
-		print("cannot convert", infile)
+        Image.open(infile).save(outfile)
+    except IOError:
+	print("cannot convert", infile)
