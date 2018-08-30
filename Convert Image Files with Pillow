@@ -11,7 +11,10 @@ f, e = os.path.splitext(infile)
 outfile = f + ".eps"
 if infile != outfile:
     try:
-        Image.open(infile).save(outfile)
+        im = Image.open(infile)
+	if im.mode not in ("L", "RGB", "CYMK"):
+	    im = im.convert("RGB")
+	im.save(outfile)    
     except IOError:
 	print("cannot convert", infile)
 
