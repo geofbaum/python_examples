@@ -1,7 +1,13 @@
+```python
+#
+# Humidity Gauge
+# with Plotly
+#
+
+import pylab as plt
+import numpy as np
 import plotly.plotly as py
 import plotly.graph_objs as go
-
-wxdata = '72'
 
 base_chart = {
     "values": [40, 10, 10, 10, 10, 10, 10],
@@ -57,6 +63,23 @@ meter_chart = {
     "hoverinfo": "none"
 }
 
+array_pour = np.linspace(0, 100, 101)
+index_pour = np.where(array_pour == int(wxdata[2]))
+print(index_pour)
+array_rad = np.linspace(-1, 1, 101)
+
+pouk = int(wxdata[2])
+pocky = int(array_rad[index_pour])
+print(pouk, pocky)
+m1 = -0.0022075*np.cos((2.8239*pocky)+0.00000318558)+0.2377502
+m2 = (0.0005*pouk) + 0.475
+l11 = (0.0009*pouk) + 0.1975
+l12 = 0.06624*np.cos((2.8239*pocky)+0.00000281801)+0.56749
+l21 = 0.0022073*np.cos((2.82424*pocky)-0.00000341834)+0.24225008869
+l22 = (-0.0005*pouk) + 0.525
+path = 'M '+str(m1)+' '+str(m2)+' L '+str(l11)+' '+str(l12)+' L '+str(l21)+' '+str(l22)+' Z'
+#print(path)
+
 layout = {
     'xaxis': {
         'showticklabels': False,
@@ -71,10 +94,8 @@ layout = {
     'shapes': [
         {
             'type': 'path',
-            #'path': 'M 0.24 0.475 L 0.1975 0.5 L 0.24 0.525 Z', # example for 0%
-            #'path': 'M 0.235 0.5 L 0.24 0.565 L 0.245 0.5 Z', # example for 50%
-            'path': 'M 0.2375 0.5125 L 0.26125 0.575 L 0.2425 0.4875 Z', # example path for 75%
-            #'path': 'M 0.24 0.525 L 0.2825 0.5 L 0.24 0.475 Z', # example for 100%
+            'path': path,
+            #'path': 'M 0.2375 0.5125 L 0.26125 0.575 L 0.2425 0.4875 Z', # change to equation above to automatically calculate based on % humidity
             'fillcolor': 'rgba(44, 160, 101, 0.5)',
             'line': {
                 'width': 0.5
@@ -89,7 +110,7 @@ layout = {
             'yref': 'paper',
             'x': 0.23,
             'y': 0.45,
-            'text': wxdata,
+            'text': wxdata[2],
             'showarrow': False
         }
     ]
@@ -101,3 +122,4 @@ base_chart['marker']['line']['width'] = 0
 fig = {"data": [base_chart, meter_chart],
        "layout": layout}
 py.iplot(fig, filename='gauge-meter-chart')
+```
