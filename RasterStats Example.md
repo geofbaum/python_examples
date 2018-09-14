@@ -17,3 +17,18 @@ for root,dirs,files in os.walk(directory):					# Walkthrough the folder and grab
 		   
 		   
 ```
+```python
+#
+# for just one file
+#
+
+from rasterstats import zonal_stats
+
+extract_stats = ['mean', 'std', 'min', 'max', 'majority', 'minority', 'unique']
+
+vector = "your_shapefile_or_geojson_file"
+raster = "your_raster_file"
+
+stats = zonal_stats(vector, raster, stats=extract_stats, geojson_out=True)
+
+[f['mean'] for f in stats]  # returns mean values
