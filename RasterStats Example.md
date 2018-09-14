@@ -32,3 +32,5 @@ raster = "your_raster_file"
 stats = zonal_stats(vector, raster, stats=extract_stats, geojson_out=True)
 
 [f['mean'] for f in stats]  # returns mean values
+
+```
