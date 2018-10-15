@@ -11,11 +11,15 @@ def clip_raster(rast, features_path, output_file, gt=None, nodata=-9999):
     # the correct file names are being connected to each other.
     #
     
+    
+    #
+    # Please remove what is below this until my next comment when you copy and paste in the other routine.
     raster = rast
     shp_f = features_path
     out_f = output_file
     print("Clipping the "+raster+" file with the "+shp_f+" mask file.")
     print("Output file named : "+out_f)
+    # Remove until here.
     
 # Example Filenames are formatted like so: NDVI_98_2018clipped.tif and LST_98_2018.shp
 ndviF = []
