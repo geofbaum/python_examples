@@ -21,7 +21,7 @@ def clip_raster(rast, features_path, output_file, gt=None, nodata=-9999):
     print("Output file named : "+out_f)
     # Remove until here.
     
-# Example Filenames are formatted like so: NDVI_98_2018clipped.tif and LST_98_2018.shp
+# Example Filenames are formatted like so: NDVI_98_2018.tif and LST_98_2018.shp
 ndviF = []
 lstF = []
 path = 'Path\\To_Your\\Folder\\' # Change this to the path of your folder with the files.
@@ -33,23 +33,23 @@ directory = os.path.join("C:\\",path)
 
 for root,dirs,files in os.walk(directory):
     for file in files:
-        if file.endswith(".tif"):
-            f = file
+        if file.endswith(".tif"):                           # Please change the file types in this section according to what you are using
+            f = file                                        # for your raster and vector files.
             if f.startswith("NDVI"):
-                n1 = f.split('NDVI')[1].split('clipped')[0]
+                n1 = f.split('NDVI')[1].split('.tif')[0]
                 ndviF.append(n1)
         if file.endswith(".shp"):
             f = file
             if f.startswith("LST"):
-                l1 = f.split('LST')[1].split('.t')[0]
+                l1 = f.split('LST')[1].split('.shp')[0]
                 lstF.append(l1)
 
 
 for i in range(len(ndviF)):
     for j in range(len(ndviF)):
         if ndviF[i] == lstF[j]:
-            input_r = "NDVI"+ndviF[i]+"clipped"
-            input_sh = "LST"+lstF[j]
+            input_r = "NDVI"+ndviF[i]+".tif"  # You will need to change these file types as well if your inputs
+            input_sh = "LST"+lstF[j]+.".shp"  # are not Tiff files and shapefiles.
             output_f = "Output_File"+lstf[j]+".tif"
             clip_raster(input_r, input_sh, output_f)
 ```            
