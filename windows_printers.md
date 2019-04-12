@@ -10,14 +10,16 @@
 
 import win32print
 
-printers = win32print.EnumPrinters(2) # The number can be 1,2,4 or 5 based on the level of type of printer info structure.
-                                      # Please see the documentation to understand more.
+printers = win32print.EnumPrinters(2) 
+# The number can be 1,2,4 or 5 based on the level of type of printer info structure.
+# Please see the documentation to understand more.
+
 printer_list = []
 for x in range(len(printers)):
     printer_list.append(printers[x][2])
     
-print(printer_list)                   # This list should give you the names of the printers available to you as they would look
-                                      # in your print menu.
+print(printer_list)                   
+# This list should give you the names of the printers available to you as they would look
+# in your print menu.
                                       
-
 ```
