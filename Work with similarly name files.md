@@ -33,8 +33,10 @@ directory = os.path.join("C:\\",path)
 
 for root,dirs,files in os.walk(directory):
     for file in files:
-        if file.endswith(".tif"):                           # Please change the file types in this section according to what you are using
-            f = file                                        # for your raster and vector files.
+    # Please change the file types in this section according to what you are using
+    # for your raster and vector files.
+        if file.endswith(".tif"):                           
+            f = file                                        
             if f.startswith("NDVI"):
                 n1 = f.split('NDVI')[1].split('.tif')[0]
                 ndviF.append(n1)
